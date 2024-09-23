@@ -2,18 +2,16 @@
 
 ```bash
 ├─.github
-│      └─ISSUE_TEMPLATE
 ├─public
-│  └─images
+│  └─index.html
 └─src
-    ├─api
+    ├─index.js
     ├─assets
     │  └─images
+    │  └─fonts
     ├─components
-    ├─providers
-    ├─fonts
-    ├─hooks
+    ├─mocks
     ├─pages
-    ├─routes
+    ├─styles
     └─utils
 ```
