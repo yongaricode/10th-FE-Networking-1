@@ -11,7 +11,6 @@
     │  └─fonts
     ├─components
     ├─mocks
-    ├─pages
     ├─styles
     └─utils
 ```
