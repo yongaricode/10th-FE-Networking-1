@@ -1,4 +1,6 @@
-function categoryBar() {
+import { createElement } from "../utils/createElement.js";
+
+function CreateCategoryBar() {
   const categoryBar = document.createElement("div");
   categoryBar.id = "category-bar";
 
@@ -25,18 +27,20 @@ function categoryBar() {
     // 새로 클릭된 카테고리에 페이지 수 추가
     // css 따로 적용해야해서 다른 span으로 감쌌음.
     if (!categorySection.querySelector(".current-page")) {
-      const currentPageWrapper = document.createElement("span");
-      currentPageWrapper.classList.add("current-page");
+      // const currentPageWrapper = document.createElement("span");
+      // currentPageWrapper.classList.add("current-page");
 
-      // 현재 페이지
-      const currentPageSpan = document.createElement("span");
-      currentPageSpan.innerText = currentPage;
-      currentPageSpan.classList.add("current-page-number");
+      const currentPageWrapper = createElement("", "current-page", "span");
 
-      // 전체 페이지
-      const totalPageSpan = document.createElement("span");
-      totalPageSpan.innerText = "/81";
-      totalPageSpan.classList.add("total-page-number");
+      // // 현재 페이지
+      const currentPageSpan = createElement(
+        currentPage,
+        "current-page-number",
+        "span"
+      );
+
+      // // 전체 페이지
+      const totalPageSpan = createElement("/81", "total-page-number", "span");
 
       currentPageWrapper.appendChild(currentPageSpan);
       currentPageWrapper.appendChild(totalPageSpan);
@@ -51,9 +55,7 @@ function categoryBar() {
   categories.forEach((category) => {
     const categorySection = document.createElement("section");
 
-    const categoryName = document.createElement("span");
-    categoryName.innerText = category;
-    categoryName.classList.add("category-name");
+    const categoryName = createElement(category, "category-name", "span");
 
     categorySection.appendChild(categoryName);
 
@@ -69,6 +71,8 @@ function categoryBar() {
 
   // 첫 번째 카테고리를 기본 선택 -> > querySelector는 지정된 선택자에 해당하는 첫 번째 요소만 선택함. 여러개의 요소가 있어도 첫번째로 발견한 요소 가져옴...
   onClickCategory(categoryBar.querySelector("section"));
+
+  return categoryBar;
 }
 
-export default categoryBar;
+export default CreateCategoryBar;
