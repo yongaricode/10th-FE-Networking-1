@@ -1,6 +1,24 @@
 @import url("CategoryBar.css");
 @import url("Header.css");
+@import url("RollingNews.css");
 
-#app {
-  margin: 58px 103px 76px 104px;
+body {
+  width: 1280px;
+  margin: 0 auto;
+}
+
+#news-container {
+  display: flex; /* 가로로 정렬 */
+  gap: 8px;
+  width: 930px;
+  margin: 0 auto;
+  margin-bottom: 32px;
+}
+
+#news-list {
+  border: 1px solid;
+  border-color: red;
+  width: 930px;
+  margin: 0 auto;
+  height: 388px;
 }

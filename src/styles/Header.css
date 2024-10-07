@@ -1,9 +1,11 @@
 #header {
   display: flex;
-  margin: 0px 48px 40px 47px;
-  border: solid red;
   justify-content: space-between;
   align-items: center;
+  width: 930px;
+  margin: 0 auto;
+  margin-top: 58px;
+  margin-bottom: 40px;
 }
 
 #logo-section {

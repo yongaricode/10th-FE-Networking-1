@@ -2,8 +2,9 @@
   display: flex;
   border: 1px solid;
   border-color: #d2dae0;
-  margin: 0px 48px 40px 47px;
+  width: 930px;
   background-color: #f5f7f9;
+  margin: 0 auto;
 }
 
 #category-bar section {
