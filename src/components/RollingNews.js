@@ -1,5 +1,3 @@
-import { createElement } from "../utils/createElement.js";
-
 function RollingNews() {
   const createRollingNews = document.createElement("div");
   createRollingNews.id = "rolling-news";
@@ -12,29 +10,27 @@ function RollingNews() {
     "12월 주담대 금리 연 3.63%…7년7개월 만에 최고",
   ];
 
+  // 뉴스 각 항목에 대해 li태그를 만들기 위해 ForEach 대신 map 사용.
+  const newsListItems = news
+    .map((newsItem, idx) => {
+      let className = "";
+      if (idx === 0) {
+        className = "current";
+      } else if (idx === 1) {
+        className = "next";
+      } else if (idx === news.length - 1) {
+        className = "prev";
+      }
+
+      return `<li class="news-title ${className}"><a class="news-a">${newsItem}</a></li>`;
+    })
+    // join을 사용해 반환된 li 태그들을 붙여 문자열로 만듦.
+    .join("");
+
   const wrapper = document.createElement("div");
   wrapper.id = "wrapper";
+  wrapper.innerHTML = `<ul>${newsListItems}</ul>`;
 
-  const newsList = document.createElement("ul");
-
-  news.forEach((newsItem, idx) => {
-    const newsTitle = createElement("", "news-title", "li");
-    const a = createElement(newsItem, "news-a", "a");
-
-    newsTitle.appendChild(a);
-
-    if (idx === 0) {
-      newsTitle.classList.add("current");
-    } else if (idx === 1) {
-      newsTitle.classList.add("next");
-    } else if (idx === news.length - 1) {
-      newsTitle.classList.add("prev");
-    }
-
-    newsList.appendChild(newsTitle);
-  });
-
-  wrapper.appendChild(newsList);
   createRollingNews.appendChild(wrapper);
 
   return createRollingNews;

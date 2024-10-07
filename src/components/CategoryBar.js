@@ -27,9 +27,6 @@ function CreateCategoryBar() {
     // 새로 클릭된 카테고리에 페이지 수 추가
     // css 따로 적용해야해서 다른 span으로 감쌌음.
     if (!categorySection.querySelector(".current-page")) {
-      // const currentPageWrapper = document.createElement("span");
-      // currentPageWrapper.classList.add("current-page");
-
       const currentPageWrapper = createElement("", "current-page", "span");
 
       // // 현재 페이지
@@ -52,19 +49,25 @@ function CreateCategoryBar() {
     selectedCategory = categorySection;
   }
 
-  categories.forEach((category) => {
-    const categorySection = document.createElement("section");
+  // map 사용해서 section 반환
+  const categorySections = categories
+    .map(
+      (category) => `
+      <section>
+        <span class="category-name">${category}</span>
+      </section>
+    `
+    )
+    .join("");
 
-    const categoryName = createElement(category, "category-name", "span");
+  // 생성된 HTML을 categoryBar에 추가
+  categoryBar.innerHTML = categorySections;
 
-    categorySection.appendChild(categoryName);
-
-    // 클릭 이벤트 리스너 추가
+  // 모든 섹션에 eventListener 추가
+  categoryBar.querySelectorAll("section").forEach((categorySection) => {
     categorySection.addEventListener("click", () =>
       onClickCategory(categorySection)
     );
-
-    categoryBar.appendChild(categorySection);
   });
 
   document.body.appendChild(categoryBar);

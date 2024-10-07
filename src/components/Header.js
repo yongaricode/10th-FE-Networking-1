@@ -4,29 +4,13 @@ function header() {
   const createHeader = document.createElement("div");
   createHeader.id = "header";
 
-  const logoSeciton = document.createElement("div");
-  logoSeciton.id = "logo-section";
-
-  const logoImg = document.createElement("img");
-  logoImg.src = "./src/assets/images/뉴스로고.png";
-  logoImg.id = "logo-img";
-
-  logoSeciton.appendChild(logoImg);
-
-  const name = document.createElement("h2");
-  name.id = "name";
-
-  name.innerText = "뉴스스탠드";
-
-  logoSeciton.appendChild(name);
-
-  createHeader.appendChild(logoSeciton);
-
-  const todayDate = document.createElement("section");
-  todayDate.id = "date";
-  todayDate.innerText = getDate();
-
-  createHeader.appendChild(todayDate);
+  createHeader.innerHTML = `
+    <div id="logo-section">
+      <img src="./src/assets/images/뉴스로고.png" id="logo-img" alt="뉴스 로고">
+      <h2 id="name">뉴스스탠드</h2>
+    </div>
+    <section id="date">${getDate()}</section>
+  `;
 
   return createHeader;
 }
