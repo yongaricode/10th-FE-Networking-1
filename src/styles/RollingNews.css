@@ -8,6 +8,7 @@
   border: 1px solid;
   border-color: #d2dae0;
   color: #5f6e76;
+  position: relative;
 }
 
 #rolling-news > #wrapper {
@@ -22,28 +23,30 @@ ul {
   padding: 0;
   margin: 0;
   position: relative;
+  height: 100%;
 }
 
 li {
   position: absolute;
   left: 0;
   right: 0;
+  top: 0;
+  transform: translateY(100%); /* 기본적으로 화면 아래에 숨김 */
   visibility: hidden;
-  transition: top 0.5s ease, visibility 0s 0.5s;
 }
 
 li.current {
-  top: 0;
+  transform: translateY(0);
   visibility: visible;
-  transition: top 0.5s ease, visibility 0s;
+  transition: transform 0.5s ease, visibility 0s;
 }
 
 li.prev {
-  top: 36px;
+  transform: translateY(-100%); /* 이전 아이템은 위로 올라감 */
 }
 
 li.next {
-  top: -36px;
+  transform: translateY(100%); /* 다음 아이템은 아래에서 대기 */
 }
 
 a {

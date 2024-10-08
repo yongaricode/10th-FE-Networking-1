@@ -33,6 +33,32 @@ function RollingNews() {
 
   createRollingNews.appendChild(wrapper);
 
+  document.addEventListener("DOMContentLoaded", () => {
+    const interval = window.setInterval(rollingCallback, 5000);
+  });
+
+  function rollingCallback() {
+    // prev 삭제
+    document.querySelector(".prev").classList.remove("prev");
+
+    // current -> prev
+    let current = document.querySelector(".current");
+    current.classList.remove("current");
+    current.classList.add("prev");
+
+    // next -> current
+    let next = document.querySelector(".next");
+    if (next) {
+      next.classList.remove("next");
+      next.classList.add("current");
+
+      if (next.nextElementSibling) {
+        next.nextElementSibling.classList.add("next");
+      } else {
+        document.querySelector("ul li:first-child").classList.add("next");
+      }
+    }
+  }
   return createRollingNews;
 }
 
