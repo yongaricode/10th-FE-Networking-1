@@ -70,8 +70,6 @@ function CreateCategoryBar() {
     );
   });
 
-  document.body.appendChild(categoryBar);
-
   // 첫 번째 카테고리를 기본 선택 -> > querySelector는 지정된 선택자에 해당하는 첫 번째 요소만 선택함. 여러개의 요소가 있어도 첫번째로 발견한 요소 가져옴...
   onClickCategory(categoryBar.querySelector("section"));
 
