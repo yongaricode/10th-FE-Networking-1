@@ -41,11 +41,11 @@ li.current {
   transition: transform 0.5s ease, visibility 0s;
 }
 
-li.prev {
+li.next {
   transform: translateY(-100%); /* 이전 아이템은 위로 올라감 */
 }
 
-li.next {
+li.prev {
   transform: translateY(100%); /* 다음 아이템은 아래에서 대기 */
 }
 

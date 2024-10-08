@@ -6,23 +6,17 @@ import PressNews from "./components/PressNews.js";
 export const index = () => {
   const app = document.getElementById("app");
 
-  app.appendChild(header());
-
-  const newsContainer = document.createElement("div");
-  newsContainer.id = "news-container";
-
-  newsContainer.appendChild(rollingNews());
-  newsContainer.appendChild(rollingNews());
-
-  app.appendChild(newsContainer);
-
-  const newsList = document.createElement("div");
-  newsList.id = "news-list";
-
-  newsList.appendChild(createCategoryBar());
-  newsList.appendChild(PressNews());
-
-  app.appendChild(newsList);
+  app.innerHTML = `
+    ${header().outerHTML}
+    <div id="news-container">
+      ${rollingNews().outerHTML}
+      ${rollingNews().outerHTML}
+    </div>
+    <div id="news-list">
+      ${createCategoryBar().outerHTML}
+      ${PressNews().outerHTML}
+    </div>
+  `;
 };
 
 index();
