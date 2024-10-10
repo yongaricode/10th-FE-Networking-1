@@ -7,6 +7,7 @@ import tabBar from "./components/TabBar.js";
 export const index = () => {
   const app = document.getElementById("app");
   const categoryBar = createCategoryBar();
+  const tabbar = tabBar();
 
   app.innerHTML = `
     ${header().outerHTML}
@@ -14,12 +15,12 @@ export const index = () => {
       ${rollingNews().outerHTML}
       ${rollingNews().outerHTML}
     </div>
-    ${tabBar().outerHTML}
     <div id="news-list">
       ${PressNews().outerHTML}
     </div>
   `;
 
+  app.querySelector("#news-list").appendChild(tabbar);
   app.querySelector("#news-list").appendChild(categoryBar);
 };
 

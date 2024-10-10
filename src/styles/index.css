@@ -17,8 +17,6 @@ body {
 }
 
 #news-list {
-  border: 1px solid;
-  border-color: red;
   width: 930px;
   margin: 0 auto;
   height: 388px;

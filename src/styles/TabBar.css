@@ -9,7 +9,9 @@
   padding: 0;
   gap: 24px;
   align-items: center;
-  font-weight: 700;
+  font-weight: 500;
+  text-size: 16px;
+  color: #879298;
 }
 
 p {
@@ -20,4 +22,15 @@ p {
   display: flex;
   align-items: center;
   gap: 8px;
+}
+
+.current-press {
+  font-weight: 700;
+  color: black;
+  pointer-events: none;
+}
+
+p:hover {
+  cursor: pointer;
+  text-decoration: underline;
 }
