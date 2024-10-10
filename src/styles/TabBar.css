@@ -1,0 +1,23 @@
+#tab-bar {
+  display: flex;
+  justify-content: space-between;
+  padding: 0;
+}
+
+#press-name {
+  display: flex;
+  padding: 0;
+  gap: 24px;
+  align-items: center;
+  font-weight: 700;
+}
+
+p {
+  margin: 0 0 0 0;
+}
+
+#list-grid {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
