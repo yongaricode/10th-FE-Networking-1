@@ -15,12 +15,12 @@ export const index = () => {
       ${rollingNews().outerHTML}
       ${rollingNews().outerHTML}
     </div>
+    <div id='tab-bar'></div>
     <div id="news-list">
-      ${PressNews().outerHTML}
     </div>
   `;
 
-  app.querySelector("#news-list").appendChild(tabbar);
+  app.querySelector("#tab-bar").appendChild(tabbar);
   app.querySelector("#news-list").appendChild(categoryBar);
 };
 

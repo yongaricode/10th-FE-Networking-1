@@ -5,6 +5,7 @@
   width: 930px;
   background-color: #f5f7f9;
   margin: 0 auto;
+  box-sizing: border-box;
 }
 
 #category-bar section {

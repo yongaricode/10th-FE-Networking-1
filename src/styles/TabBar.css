@@ -36,6 +36,11 @@ p:hover {
   text-decoration: underline;
 }
 
+svg:hover {
+  cursor: pointer;
+}
+
 .current-type {
   fill: #4362d0;
+  pointer-events: none;
 }

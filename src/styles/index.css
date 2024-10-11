@@ -2,6 +2,7 @@
 @import url("Header.css");
 @import url("RollingNews.css");
 @import url("TabBar.css");
+@import url("PressNews.css");
 
 body {
   width: 1280px;
@@ -20,6 +21,7 @@ body {
   width: 930px;
   margin: 0 auto;
   height: 388px;
+  border: 1px solid;
 }
 
 #tab-bar {
