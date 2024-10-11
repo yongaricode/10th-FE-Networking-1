@@ -22,6 +22,7 @@ p {
   display: flex;
   align-items: center;
   gap: 8px;
+  fill: #879298;
 }
 
 .current-press {
@@ -33,4 +34,8 @@ p {
 p:hover {
   cursor: pointer;
   text-decoration: underline;
+}
+
+.current-type {
+  fill: #4362d0;
 }
