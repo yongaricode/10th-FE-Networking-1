@@ -1,6 +1,6 @@
 #category-bar {
   display: flex;
-  border: 1px solid;
+  border-bottom: 1px solid;
   border-color: #d2dae0;
   width: 930px;
   background-color: #f5f7f9;

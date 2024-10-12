@@ -22,6 +22,7 @@ body {
   margin: 0 auto;
   height: 388px;
   border: 1px solid;
+  border-color: #d2dae0;
 }
 
 #tab-bar {

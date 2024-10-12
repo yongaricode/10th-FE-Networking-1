@@ -5,10 +5,8 @@
   font-size: 14px;
   padding: 16px;
   background-color: #f5f7f9;
-  border: 1px solid;
-  border-color: #d2dae0;
+  border: 1px solid #d2dae0;
   color: #5f6e76;
-  position: relative;
 }
 
 #rolling-news > #wrapper {
@@ -18,12 +16,21 @@
   overflow: hidden;
 }
 
+#container {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  gap: 16px;
+}
+
 ul {
   list-style: none;
   padding: 0;
   margin: 0;
   position: relative;
   height: 100%;
+  flex-grow: 1;
+  align-items: center;
 }
 
 li {
@@ -31,7 +38,7 @@ li {
   left: 0;
   right: 0;
   top: 0;
-  transform: translateY(100%); /* 기본적으로 화면 아래에 숨김 */
+  transform: translateY(100%);
   visibility: hidden;
 }
 
@@ -50,7 +57,10 @@ li.prev {
 }
 
 a {
-  display: block;
   text-decoration: none;
   overflow: hidden;
+}
+
+#media-name {
+  font-size: 14px;
 }

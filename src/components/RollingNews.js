@@ -2,51 +2,74 @@ function RollingNews() {
   const createRollingNews = document.createElement("div");
   createRollingNews.id = "rolling-news";
 
-  const news = [
-    "노바백스 백신 2월중순부터 접종",
-    "얼어붙은 투심에…현대엔지니어링 상장 철회",
-    "공법변경 구조검토 요구, 현산 측이 묵살했다",
-    "일본 정부, 사도광산 세계유산 추천 방침 굳혀, 일본과 갈등 첨예화 예상",
-    "12월 주담대 금리 연 3.63%…7년7개월 만에 최고",
-  ];
+  const news = [];
+  const rollingTime = 5000;
+  const rollingInterval = 1000;
 
-  // 뉴스 각 항목에 대해 li태그를 만들기 위해 ForEach 대신 map 사용.
-  const newsListItems = news
-    .map((newsItem, idx) => {
-      let className = "";
-      if (idx === 0) {
-        className = "current";
-      } else if (idx === 1) {
-        className = "next";
-      } else if (idx === news.length - 1) {
-        className = "prev";
-      }
+  function getHeadline() {
+    const dataPath = "/src/data/headline.json";
 
-      return `<li class="news-title ${className}"><a class="news-a">${newsItem}</a></li>`;
-    })
-    // join을 사용해 반환된 li 태그들을 붙여 문자열로 만듦.
-    .join("");
+    fetch(dataPath)
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("네트워크 에러");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        data.forEach((headline) => {
+          news.push(headline);
+        });
+        renderNews();
+        initializeRolling();
+      })
+      .catch((error) => console.error("로딩 에러: ", error));
+  }
 
-  const wrapper = document.createElement("div");
-  wrapper.id = "wrapper";
-  wrapper.innerHTML = `<ul>${newsListItems}</ul>`;
+  // 함수 호출
+  getHeadline();
 
-  createRollingNews.appendChild(wrapper);
+  function renderNews() {
+    // 뉴스 각 항목에 대해 li태그를 만들기 위해 ForEach 대신 map 사용.
+    const newsListItems = news
+      .map((newsItem, idx) => {
+        let className = "";
+        if (idx === 0) {
+          className = "current";
+        } else if (idx === 1) {
+          className = "next";
+        } else if (idx === news.length - 1) {
+          className = "prev";
+        }
 
-  // DOM이 모두 로드 되면 실행
-  document.addEventListener("DOMContentLoaded", () => {
+        return `<li class="news-title ${className}"><a class="news-a">${newsItem.headline}</a></li>`;
+      })
+      // join을 사용해 반환된 li 태그들을 붙여 문자열로 만듦.
+      .join("");
+
+    const wrapper = document.createElement("div");
+    wrapper.id = "wrapper";
+    wrapper.innerHTML = ` <div id='container'>
+      <h3 id='media-name'>연합뉴스</h3>
+      <ul>${newsListItems}</ul>
+    </div>`;
+
+    createRollingNews.appendChild(wrapper);
+  }
+
+  function initializeRolling() {
     const rollingElements = document.querySelectorAll("#rolling-news");
     if (rollingElements[0]) {
-      setInterval(() => rollingCallback(rollingElements[0]), 5000);
+      setInterval(() => rollingCallback(rollingElements[0]), rollingTime);
     }
 
     // 2번째 뉴스 바는 1초 뒤부터 돌아가도록 설정
     if (rollingElements[1]) {
       setTimeout(() => {
-        setInterval(() => rollingCallback(rollingElements[1]), 5000);
-      }, 1000);
+        setInterval(() => rollingCallback(rollingElements[1]), rollingTime);
+      }, rollingInterval);
     }
-  });
+  }
 
   function rollingCallback(rollingBar) {
     const current = rollingBar.querySelector(".current");
