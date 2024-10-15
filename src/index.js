@@ -4,13 +4,13 @@ import RollingNews from "./components/RollingNews.js";
 import PressNews from "./components/PressNews.js";
 import tabBar from "./components/TabBar.js";
 
-export const index = () => {
+export const index = async () => {
   const app = document.getElementById("app");
   const categoryBar = createCategoryBar();
   const tabbar = tabBar();
   const pressnews = PressNews();
-  const rollingnews1 = RollingNews();
-  const rollingnews2 = RollingNews();
+  const rollingnews1 = await RollingNews(0);
+  const rollingnews2 = await RollingNews(1000);
 
   app.innerHTML = `
     ${header().outerHTML}
