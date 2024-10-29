@@ -23,7 +23,7 @@
   gap: 16px;
 }
 
-ul {
+#rolling-news ul {
   list-style: none;
   padding: 0;
   margin: 0;
@@ -33,16 +33,7 @@ ul {
   align-items: center;
 }
 
-li {
-  position: absolute;
-  left: 0;
-  right: 0;
-  top: 0;
-  transform: translateY(100%);
-  visibility: hidden;
-}
-
-li.current {
+#rolling-news li.news-title.current {
   transform: translateY(0);
   visibility: visible;
   transition: transform 0.5s ease, visibility 0s;
@@ -54,6 +45,15 @@ li.next {
 
 li.prev {
   transform: translateY(100%); /* 다음 아이템은 아래에서 대기 */
+}
+
+#rolling-news li.news-title {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  transform: translateY(100%);
+  visibility: hidden;
 }
 
 a {
