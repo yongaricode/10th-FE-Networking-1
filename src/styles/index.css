@@ -4,9 +4,15 @@
 @import url("TabBar.css");
 @import url("PressNews.css");
 
+@font-face {
+  font-family: "Pretendard";
+  src: url("../assets/font/PretendardVariable.ttf") format("truetype");
+}
+
 body {
   width: 1280px;
   margin: 0 auto;
+  font-family: "Pretendard";
 }
 
 #news-container {
