@@ -6,10 +6,10 @@ import MyPressNews from "./components/MyPressNews.js";
 import GridNews from "./components/GridNews.js";
 import MyGridNews from "./components/MyGridNews.js";
 import TabBar from "./components/TabBar.js";
+import { createElement } from "./utils/createElement.js";
 
 export const index = async () => {
   const app = document.getElementById("app");
-  const categoryBar = createCategoryBar();
   const rollingnews1 = await RollingNews(0);
   const rollingnews2 = await RollingNews(1000);
 
@@ -22,6 +22,12 @@ export const index = async () => {
 
   app.querySelector("#news-container").appendChild(rollingnews1);
   app.querySelector("#news-container").appendChild(rollingnews2);
+
+  const leftButton = createElement("", "left-button", "img");
+  leftButton.src = "/src/assets/images/leftButton.png";
+
+  const rightButton = createElement("", "right-button", "img");
+  leftButton.src = "/src/assets/images/rightButton.png";
 
   function renderNewsList(pressType, displayType) {
     const newsList = app.querySelector("#news-list");
