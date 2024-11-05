@@ -10,11 +10,12 @@
 
 #category-bar section {
   color: #879298;
-  padding: 11.5px 16px 11.5px 16px;
+  padding: 11.5px 16px;
   display: flex;
-  gap: 40px;
   align-items: center;
   font-weight: 500;
+  justify-content: space-between;
+  box-sizing: border-box;
 }
 
 .current-page {
@@ -42,4 +43,25 @@
   background-color: #4362d0;
   color: #ffffff !important;
   font-weight: 700 !important;
+  width: 166px;
+}
+
+.press-name:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.press-name {
+  font-size: 14px;
+}
+
+.press-icon {
+  width: 14px;
+  height: 14px;
+  margin: 0;
+  padding: 0;
+}
+
+.icon-wrap {
+  height: 14px;
 }

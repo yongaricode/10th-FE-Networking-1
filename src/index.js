@@ -28,9 +28,11 @@ export const index = async () => {
     newsList.innerHTML = "";
 
     if (pressType === "total" && displayType === "list") {
+      const categoryBar = createCategoryBar(pressType);
       newsList.appendChild(categoryBar);
       newsList.appendChild(PressNews());
     } else if (pressType === "my" && displayType === "list") {
+      const categoryBar = createCategoryBar(pressType);
       newsList.appendChild(categoryBar);
       newsList.appendChild(MyPressNews());
     } else if (pressType === "total" && displayType === "grid") {
