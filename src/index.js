@@ -17,7 +17,9 @@ export const index = async () => {
     <div id="news-container">
     </div>
     <div id='tab-bar'></div>
-    <div id="news-list">
+    <div id="news-list-container">
+      <div id="news-list">
+      </div>
     </div>`;
 
   app.querySelector("#news-container").appendChild(rollingnews1);
@@ -27,7 +29,13 @@ export const index = async () => {
   leftButton.src = "/src/assets/images/leftButton.png";
 
   const rightButton = createElement("", "right-button", "img");
-  leftButton.src = "/src/assets/images/rightButton.png";
+  rightButton.src = "/src/assets/images/rightButton.png";
+
+  // `news-list-container`에 버튼과 뉴스 리스트 추가
+  const newsListContainer = app.querySelector("#news-list-container");
+  newsListContainer.appendChild(leftButton);
+  newsListContainer.appendChild(app.querySelector("#news-list"));
+  newsListContainer.appendChild(rightButton);
 
   function renderNewsList(pressType, displayType) {
     const newsList = app.querySelector("#news-list");

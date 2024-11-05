@@ -31,9 +31,33 @@ body {
   border-color: #d2dae0;
 }
 
+#news-list-container {
+  display: flex;
+  align-items: center;
+  position: relative;
+  margin: 0 45px 0 45px;
+}
+
 #tab-bar {
   width: 930px;
   height: 24px;
   margin: 0 auto;
   margin-bottom: 24px;
+}
+
+.left-button,
+.right-button {
+  width: 24px;
+  height: 40px;
+  cursor: pointer;
+}
+
+.left-button {
+  position: absolute;
+  left: 0;
+}
+
+.right-button {
+  position: absolute;
+  right: 0;
 }
