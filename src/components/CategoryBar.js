@@ -4,6 +4,12 @@ import { createElement } from "../utils/createElement.js";
 // 전체 카테고리 -> categories 넘거주면됨... 길이는? 어떻게 하지... 배열 길이...?
 // 내가 구독한 언론사 -> 따로 배열 만들어서 주자... 이것도 외부에서 넘겨줘야되나...?
 
+async function fetchNewsData() {
+  const response = await fetch("/src/data/news.json");
+  const data = await response.json();
+  return data;
+}
+
 function CreateCategoryBar(type) {
   const categoryBar = document.createElement("div");
   categoryBar.id = "category-bar";
@@ -23,7 +29,7 @@ function CreateCategoryBar(type) {
   let selectedCategory = null;
   let currentPage = 1;
 
-  function onClickCategory(categorySection, type) {
+  function onClickCategory(categorySection, type, totalPage) {
     // 이전 선택된 카테고리 초기화
     if (selectedCategory && selectedCategory !== categorySection) {
       selectedCategory.classList.remove("selected-category");
@@ -44,7 +50,11 @@ function CreateCategoryBar(type) {
         );
 
         // 전체 페이지
-        const totalPageSpan = createElement("/81", "total-page-number", "span");
+        const totalPageSpan = createElement(
+          `/${totalPage}`,
+          "total-page-number",
+          "span"
+        );
 
         currentPageWrapper.appendChild(currentPageSpan);
         currentPageWrapper.appendChild(totalPageSpan);
@@ -67,50 +77,69 @@ function CreateCategoryBar(type) {
     selectedCategory = categorySection;
   }
 
-  let categorySections = "";
+  async function initialize() {
+    const newsData = await fetchNewsData();
 
-  if (type == "total") {
-    // map 사용해서 section 반환
-    categorySections = categories
-      .map(
-        (category) => `
-   <section>
-     <span class="category-name">${category}</span>
-   </section>
- `
+    let categorySections = "";
+
+    if (type == "total") {
+      // map 사용해서 section 반환
+      categorySections = categories
+        .map(
+          (category) => `
+     <section>
+       <span class="category-name">${category}</span>
+     </section>
+   `
+        )
+        .join("");
+    } else if (type == "my") {
+      // map 사용해서 section 반환
+      categorySections = myPress
+        .map(
+          (press) => `
+      <section>
+        <span class="press-name">${press}</span>
+      </section>
+    `
+        )
+        .join("");
+    }
+
+    // 생성된 HTML을 categoryBar에 추가
+    categoryBar.innerHTML = categorySections;
+
+    categoryBar.querySelectorAll("section").forEach((categorySection) => {
+      const categoryName =
+        categorySection.querySelector(".category-name").innerText;
+      const totalPage = getTotalPage(newsData, categoryName);
+
+      categorySection.addEventListener("click", () =>
+        onClickCategory(categorySection, type, totalPage)
+      );
+    });
+
+    const firstCategorySection = categoryBar.querySelector("section");
+    onClickCategory(
+      firstCategorySection,
+      type,
+      getTotalPage(
+        newsData,
+        firstCategorySection.querySelector(".category-name").innerText
       )
-      .join("");
-  } else if (type == "my") {
-    // map 사용해서 section 반환
-    categorySections = myPress
-      .map(
-        (press) => `
-    <section>
-      <span class="press-name">${press}</span>
-    </section>
-  `
-      )
-      .join("");
-  }
-
-  // 생성된 HTML을 categoryBar에 추가
-  categoryBar.innerHTML = categorySections;
-
-  // 모든 섹션에 eventListener 추가
-  categoryBar.querySelectorAll("section").forEach((categorySection) => {
-    categorySection.addEventListener("click", () =>
-      onClickCategory(categorySection, type)
     );
-  });
-
-  // 첫 번째 카테고리를 기본 선택 -> > querySelector는 지정된 선택자에 해당하는 첫 번째 요소만 선택함. 여러개의 요소가 있어도 첫번째로 발견한 요소 가져옴...
-  // onClickCategory(categoryBar.querySelector("section"));
-  const firstCategorySection = categoryBar.querySelector("section");
-  if (firstCategorySection) {
-    onClickCategory(firstCategorySection, type);
   }
+
+  initialize();
 
   return categoryBar;
+}
+
+function getTotalPage(data, category) {
+  const categoryData = Object.values(data).find(
+    (item) => item.category === category
+  );
+  return categoryData ? categoryData.totalPage : 1;
 }
 
 export default CreateCategoryBar;
